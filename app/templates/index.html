@@ -1,46 +1,53 @@
-{% extends 'base.html'%} {% from 'pitch_display_macro.html' import
-display_pitches%} {% block content%} {% block styles %} {{super()}}
-<link
-  rel="stylesheet"
-  href="{{url_for('static',filename='css/particle.css')}}"
-/>
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='css/main.css') }}"
-/>
-{% endblock %}
-<div class="bgimage">
-  <div class="p-3 p-md-5 m-md-3 text-center bg-transparent">
-    <div class="col-md-12 p-lg-5 mx-auto my-5">
-      <h1
-        class="display-4 font-weight-normal text-white"
-        style="font-size: 40px"
-      >
-        welcome to One Minute Pitch:
-      </h1>
-      <p class="lead font-weight-normal text-white" style="font-size: 40px">
-        Make it happen in a minute.
-      </p>
-      <p style="font-size: 40px; color: white">
-        You only have 60 seconds to impress someone. 1 minute can make or break
-        you. How do we make sure that you use your 1 minute to actually say
-        something meaningful?
-      </p>
-      <div id="buttons d-block mx-auto">
-        <a
-          class="btn btn-outline-secondary text-white"
-          href="/new_post"
-          style="font-size: 40px"
-          >New Pitch</a
-        >
-        <a
-          class="btn btn-outline-secondary text-white"
-          href="/posts"
-          style="font-size: 40px"
-          >View Pitches</a
-        >
+{% extends 'base.html'%} {% import 'macros.html' as macro%} {% import
+'bootstrap/wtf.html' as wtf %} {% block styles%} {{ super() }}
+<!--super() function tells Jinja not to override any code that is defined in the block-->
+<link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}" />
+{% endblock %} {% block content %}
+<br />
+<div class="container-fluid" style="font-family: 'Russo One', sans-serif">
+  <div class="row">
+    <div class="container" id="block-text">
+      <br />
+      <div class="col-md-6">
+        <img
+          src="/static/photos/minute.jpg"
+          style="margin-right: 100%; padding-right: 100%; height: 300px"
+        />
+      </div>
+
+      <br />
+      <div class="col-md-6">
+        <p style="font-size: 20px; float: left">
+          <strong>
+            In life you only have 60 seconds to impress someone. One minute to
+            make or break you. How do we make sure that you use your one minute
+            to actually say something meaningful ?
+          </strong>
+        </p>
       </div>
     </div>
   </div>
+
+  <hr />
+
+  <div class="container">
+    <br />
+    <h2><strong>PITCH CATEGORIES </strong></h2>
+    <strong style="font-size: 20px"
+      >{{ macro.displayCategoryList(category) }}
+    </strong>
+    <br />
+    <br />
+
+    <h3 class="add-category">
+      <a
+        class="btn btn-primary"
+        href="/add/category"
+        style="background-color: #002457; float: right"
+        ><span aria-hidden="true"> ADD CATEGORY </span></a
+      >
+    </h3>
+  </div>
+
+  {% endblock %}
 </div>
-{% endblock %}
