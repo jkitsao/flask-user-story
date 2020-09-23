@@ -56,7 +56,7 @@ def signup():
             user = User(username=username, email=email)
             user.set_password(password)
             user.save()
-            # email_message("Welcome to 1m Pitch", "email/howdy", user.email, user=user)
+           
             return redirect(url_for('auth.login'))
 
     return render_template('signup.html')
