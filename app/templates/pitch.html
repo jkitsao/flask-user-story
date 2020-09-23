@@ -1,13 +1,21 @@
-{% extends 'base.html'%}
-{% import 'bootstrap/wtf.html' as wtf %}
+{% extends "base.html" %} {% import 'macros.html' as macro%} {% block content %}
+<div class="col-md-10 col-md-offset-1 col-sm-12">
+  <h3 class="text-center">{{category.name|upper}}</h3>
+  <a
+    class="btn btn-primary text-center text-danger"
+    href="/category/view_pitch/{{pitches.category.id}}"
+  >
+    Post a Pitch
+  </a>
+  <hr />
+</div>
 
-{% block content %}
-    <div class="container">
-        <div class="row col-md-12">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">{{wtf.quick_form(form)}}</div>
-            <div class="col-md-2"></div>
-        </div>
-    </div>
-   
-{% endblock%}
+{% if pitches %}
+<div class="col-sm-12 col-md-8">{{ macro.displayPitches(pitches)}}</div>
+{%else%}
+<div class="well">
+  <h4 style="padding: 10%; text-align: center; font-size: 50px">
+    NO PITCHES IN THIS CATEGORY.
+  </h4>
+</div>
+{% endif %} {% endblock %}
